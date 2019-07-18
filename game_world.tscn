@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game_world.gd" type="Script" id=1]
+
+[node name="GameWorld" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="PanelPlayerList" type="Panel" parent="HUD"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="lblLocalPlayer" type="Label" parent="HUD/PanelPlayerList"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "LocalPlayerName"
+
+[node name="boxList" type="VBoxContainer" parent="HUD/PanelPlayerList"]
+margin_right = 40.0
+margin_bottom = 40.0
