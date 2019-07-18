@@ -13,13 +13,6 @@ var server_info = {
 
 var players = {}
 
-var player_info = {
-	name = "Player",                   # How this player will be shown within the GUI
-	net_id = 1,                        # By default everyone receives "server ID"
-	actor_path = "res://player.tscn",  # The class used to represent the player in the game world
-	char_color = Color(1, 1, 1)        # By default don't modulate the icon color
-}
-
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_player_disconnected")
@@ -33,7 +26,13 @@ func _on_player_connected(id):
 	
 # Everyone gets notified whenver someone disconnects from the server
 func _on_player_disconnected(id):
-	pass
+	print("Player ", players[id].name, " disconnected from server")
+	# Update the player tables
+	if (get_tree().is_network_server()):
+		# Unregister the player from the server's list
+		unregister_player(id)
+		# Then on all remaining peers
+		rpc("unregister_player", id)
 
 # Peer trying to connect to server is notified on success
 func _on_connected_to_server():
@@ -52,7 +51,11 @@ func _on_connection_failded():
 	
 # Peer is notified when disconnected from server
 func _on_disconnected_from_server():
-	pass
+	print("Disconnected from server")
+	# Clear the internal player list
+	players.clear()
+	# Reset the player info network ID
+	gamestate.player_info.net_id = 1
 
 func create_server():
 	# Initialize the networking system
@@ -91,7 +94,12 @@ remote func register_player(pInfo):
 	players[pInfo.net_id] = pInfo          # Create the player entry in the dictionary
 	emit_signal("player_list_changed")     # And notify that the player list has been changed
 	
-	
+remote func unregister_player(id):
+	print("Removing player ", players[id].name, " from internal table")
+	# Remove the player from the list
+	players.erase(id)
+	# And notify the list has been changed
+	emit_signal("player_list_changed")
 	
 	
 	

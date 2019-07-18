@@ -6,6 +6,9 @@ func _ready():
 	network.connect("join_fail", self, "_on_join_fail")
 
 func _on_btCreate_pressed():
+	# Properly set the local player information
+	set_player_info()
+	
 	# Gather values from the GUI and fill the network.server_info dictionary
 	if (!$PanelHost/txtServerName.text.empty()):
 		network.server_info.name = $PanelHost/txtServerName
@@ -22,9 +25,14 @@ func _on_join_fail():
 	print("Failed to join server")
 
 func _on_btJoin_pressed():
+	# Properly set the local player information
+	set_player_info()
+	
 	var port = int($PanelJoin/txtJoinPort.text)
 	var ip = $PanelJoin/txtJoinIP.text
 	network.join_server(ip, port)
 
 func set_player_info():
-	if (!$Panel
+	if (!$PanelPlayer/txtPlayername.text.empty()):
+		gamestate.player_info.name = $PanelPlayer/txtPlayername.text
+	gamestate.player_info.char_color = $PanelPlayer/btColor.color
