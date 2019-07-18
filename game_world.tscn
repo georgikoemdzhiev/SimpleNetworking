@@ -29,3 +29,54 @@ margin_left = 1.95359
 margin_top = 17.3544
 margin_right = 41.9536
 margin_bottom = 57.3544
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="1" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 290, 160 )
+
+[node name="12" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 290, 300 )
+
+[node name="7" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 290, 230 )
+
+[node name="16" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 290, 370 )
+
+[node name="4" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 420, 160 )
+
+[node name="9" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 420, 300 )
+
+[node name="5" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 420, 230 )
+
+[node name="14" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 420, 370 )
+
+[node name="2" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 350, 160 )
+
+[node name="10" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 350, 300 )
+
+[node name="6" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 350, 230 )
+
+[node name="11" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 350, 370 )
+
+[node name="3" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 490, 160 )
+
+[node name="13" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 490, 300 )
+
+[node name="8" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 490, 230 )
+
+[node name="15" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 490, 370 )
